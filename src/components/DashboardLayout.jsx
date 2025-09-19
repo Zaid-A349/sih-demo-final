@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { LogOut, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 import { useAuth } from "../App";
 import { LogoutDialog } from "./LogoutDialog";
+import { ProfileDropdown } from "./ProfileDropdown";
 import { useNavigate } from "react-router-dom";
 
 export const DashboardLayout = ({ children, sidebar, title, userType }) => {
@@ -43,48 +42,32 @@ export const DashboardLayout = ({ children, sidebar, title, userType }) => {
         <div className="flex-1 flex flex-col">
           {/* Header */}
           <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-            <div className="flex h-16 items-center justify-between px-6">
-              <div className="flex items-center space-x-4">
-                <SidebarTrigger className="text-muted-foreground" />
-                <div>
-                  <h1 className="text-xl font-semibold text-foreground">{title}</h1>
-                  <p className="text-sm text-muted-foreground">
+            <div className="flex h-16 items-center justify-between px-4 md:px-6 gap-4">
+              <div className="flex items-center space-x-3 min-w-0 flex-1">
+                <SidebarTrigger className="text-muted-foreground flex-shrink-0" />
+                <div className="min-w-0">
+                  <h1 className="text-lg md:text-xl font-semibold text-foreground truncate">{title}</h1>
+                  <p className="text-xs md:text-sm text-muted-foreground truncate">
                     Welcome back, {user?.name}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <Button variant="ghost" size="icon" className="relative">
-                  <Bell className="w-5 h-5" />
+              <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
+                <Button variant="ghost" size="icon" className="relative hover:bg-accent/50">
+                  <Bell className="w-4 h-4 md:w-5 md:h-5" />
                   <span className="absolute -top-1 -right-1 w-3 h-3 bg-destructive rounded-full text-xs flex items-center justify-center text-white">
                     3
                   </span>
                 </Button>
                 
-                <div className="flex items-center space-x-3">
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-foreground">{user?.name}</p>
-                    <Badge className={`text-xs ${getUserTypeColor(userType)}`}>
-                      {userType.charAt(0).toUpperCase() + userType.slice(1)}
-                    </Badge>
-                  </div>
-                  <Avatar>
-                    <AvatarImage src="/api/placeholder/32/32" alt={user?.name} />
-                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                      {getInitials(user?.name || 'User')}
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
-
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  onClick={() => setShowLogoutDialog(true)}
-                  className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-                >
-                  <LogOut className="w-5 h-5" />
-                </Button>
+                <ProfileDropdown 
+                  user={user}
+                  userType={userType}
+                  getUserTypeColor={getUserTypeColor}
+                  getInitials={getInitials}
+                  onLogout={() => setShowLogoutDialog(true)}
+                />
               </div>
             </div>
           </header>
