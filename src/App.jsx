@@ -53,11 +53,11 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContext.Provider value={{ user, login, logout }}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AuthContext.Provider value={{ user, login, logout }}>
             <Routes>
               <Route 
                 path="/login" 
@@ -90,9 +90,9 @@ const App = () => {
               <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthContext.Provider>
+          </AuthContext.Provider>
+        </BrowserRouter>
+      </TooltipProvider>
     </QueryClientProvider>
   );
 };
