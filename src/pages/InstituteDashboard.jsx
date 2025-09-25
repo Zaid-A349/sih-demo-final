@@ -280,137 +280,119 @@ const InstituteDashboard = () => {
           </div>
 
           {/* Sidebar Content */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="space-y-6">
             {/* Quick Actions */}
-            <Card className="card-gradient border-border/50 h-fit">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center text-foreground text-base">
+            <Card className="card-gradient border-border/50">
+              <CardHeader>
+                <CardTitle className="flex items-center text-foreground">
                   <Target className="w-5 h-5 mr-2 text-accent" />
                   Quick Actions
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-0">
-                <div className="grid gap-2">
-                  <Button variant="outline" className="w-full justify-start h-9" size="sm">
-                    <UserPlus className="w-4 h-4 mr-2 flex-shrink-0" />
-                    <span className="truncate">Add New Student</span>
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start h-9" size="sm">
-                    <Users className="w-4 h-4 mr-2 flex-shrink-0" />
-                    <span className="truncate">Add Faculty Member</span>
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start h-9" size="sm">
-                    <Building className="w-4 h-4 mr-2 flex-shrink-0" />
-                    <span className="truncate">Manage Departments</span>
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start h-9" size="sm">
-                    <FileText className="w-4 h-4 mr-2 flex-shrink-0" />
-                    <span className="truncate">Generate Report</span>
-                  </Button>
-                </div>
+              <CardContent className="space-y-3">
+                <Button variant="outline" className="w-full justify-start" size="sm">
+                  <UserPlus className="w-4 h-4 mr-2" />
+                  Add New Student
+                </Button>
+                <Button variant="outline" className="w-full justify-start" size="sm">
+                  <Users className="w-4 h-4 mr-2" />
+                  Add Faculty Member
+                </Button>
+                <Button variant="outline" className="w-full justify-start" size="sm">
+                  <Building className="w-4 h-4 mr-2" />
+                  Manage Departments
+                </Button>
+                <Button variant="outline" className="w-full justify-start" size="sm">
+                  <FileText className="w-4 h-4 mr-2" />
+                  Generate Report
+                </Button>
               </CardContent>
             </Card>
 
             {/* Pending Reports */}
-            <Card className="card-gradient border-border/50 h-fit">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center text-foreground text-base">
+            <Card className="card-gradient border-border/50">
+              <CardHeader>
+                <CardTitle className="flex items-center text-foreground">
                   <FileText className="w-5 h-5 mr-2 text-primary" />
                   Pending Reports
                 </CardTitle>
-                <CardDescription className="text-sm">
+                <CardDescription>
                   Upcoming accreditation deadlines
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0">
-                <div className="grid gap-3">
-                  {pendingReports.map((report, index) => (
-                    <div key={index} className="p-3 bg-muted/20 rounded-lg border border-border/30">
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <h4 className="font-medium text-sm text-foreground line-clamp-1">
-                          {report.type} Report
-                        </h4>
-                        <Badge variant="outline" className={`text-xs px-2 py-0.5 ${getPriorityColor(report.priority)}`}>
-                          {report.priority}
-                        </Badge>
-                      </div>
-                      <p className="text-xs text-muted-foreground mb-2">
-                        Due: {report.deadline}
-                      </p>
-                      <Badge variant="outline" className={`text-xs px-2 py-0.5 ${getStatusColor(report.status)}`}>
-                        {report.status}
+              <CardContent className="space-y-3">
+                {pendingReports.map((report, index) => (
+                  <div key={index} className="p-3 bg-muted/20 rounded-lg border border-border/30">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-medium text-sm text-foreground">{report.type} Report</h4>
+                      <Badge className={getPriorityColor(report.priority)}>
+                        {report.priority}
                       </Badge>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-xs text-muted-foreground mb-2">Due: {report.deadline}</p>
+                    <Badge className={getStatusColor(report.status)}>
+                      {report.status}
+                    </Badge>
+                  </div>
+                ))}
               </CardContent>
             </Card>
 
             {/* Recent Activities */}
-            <Card className="card-gradient border-border/50 h-fit">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center text-foreground text-base">
+            <Card className="card-gradient border-border/50">
+              <CardHeader>
+                <CardTitle className="flex items-center text-foreground">
                   <BarChart3 className="w-5 h-5 mr-2 text-secondary" />
                   Recent Activities
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-0">
-                <div className="grid gap-3">
-                  {recentActivities.map((activity) => (
-                    <div key={activity.id} className="p-3 bg-muted/20 rounded-lg border border-border/30">
-                      <div className="flex items-start gap-3">
-                        <div className={`flex-shrink-0 p-2 rounded-lg bg-background/50 ${activity.color}`}>
-                          <activity.icon className="w-4 h-4" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h4 className="text-sm font-medium text-foreground line-clamp-1 mb-1">
-                            {activity.title}
-                          </h4>
-                          <p className="text-xs text-muted-foreground line-clamp-2 mb-1">
-                            {activity.description}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {activity.time}
-                          </p>
-                        </div>
+              <CardContent className="space-y-3">
+                {recentActivities.map((activity) => (
+                  <div key={activity.id} className="p-3 bg-muted/20 rounded-lg border border-border/30">
+                    <div className="flex items-start space-x-3">
+                      <div className={`p-1 rounded-lg bg-background/50 ${activity.color}`}>
+                        <activity.icon className="w-4 h-4" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xs font-medium text-foreground">{activity.title}</h4>
+                        <p className="text-xs text-muted-foreground mt-1">{activity.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
 
             {/* System Status */}
-            <Card className="card-gradient border-border/50 h-fit">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center text-foreground text-base">
+            <Card className="card-gradient border-border/50">
+              <CardHeader>
+                <CardTitle className="flex items-center text-foreground">
                   <Award className="w-5 h-5 mr-2 text-green-600" />
                   System Health
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-0">
-                <div className="grid gap-4">
-                  <div>
-                    <div className="flex justify-between items-center text-sm mb-2">
-                      <span className="text-foreground">Database Performance</span>
-                      <span className="text-green-600 font-medium">Excellent</span>
-                    </div>
-                    <Progress value={95} className="h-2" />
+              <CardContent className="space-y-3">
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-foreground">Database Performance</span>
+                    <span className="text-green-600">Excellent</span>
                   </div>
-                  <div>
-                    <div className="flex justify-between items-center text-sm mb-2">
-                      <span className="text-foreground">Server Uptime</span>
-                      <span className="text-green-600 font-medium">99.8%</span>
-                    </div>
-                    <Progress value={99.8} className="h-2" />
+                  <Progress value={95} className="h-2" />
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-foreground">Server Uptime</span>
+                    <span className="text-green-600">99.8%</span>
                   </div>
-                  <div>
-                    <div className="flex justify-between items-center text-sm mb-2">
-                      <span className="text-foreground">User Activity</span>
-                      <span className="text-blue-600 font-medium">High</span>
-                    </div>
-                    <Progress value={87} className="h-2" />
+                  <Progress value={99.8} className="h-2" />
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-foreground">User Activity</span>
+                    <span className="text-blue-600">High</span>
                   </div>
+                  <Progress value={87} className="h-2" />
                 </div>
               </CardContent>
             </Card>
