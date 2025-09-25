@@ -106,7 +106,7 @@ const Login = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 glass-effect">
             <GraduationCap className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Smart Student Hub</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">EduLogix</h1>
           <p className="text-white/80">Your gateway to educational excellence</p>
         </div>
 

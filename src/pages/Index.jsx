@@ -1,4 +1,4 @@
-// Smart Student Hub - Modern Educational Platform
+// EduLogix - Modern Educational Platform
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ const Index = () => {
               <GraduationCap className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Smart Student Hub</h1>
+              <h1 className="text-xl font-bold text-foreground">EduLogix</h1>
               <p className="text-sm text-muted-foreground">Educational Excellence Platform</p>
             </div>
           </div>
@@ -169,7 +169,7 @@ const Index = () => {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Get Started?</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of educational institutions already using Smart Student Hub to streamline their operations.
+            Join thousands of educational institutions already using EduLogix to streamline their operations.
           </p>
           <Button 
             size="lg" 
@@ -185,7 +185,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-6 text-center text-muted-foreground">
-          <p>&copy; 2024 Smart Student Hub. Transforming education through technology.</p>
+          <p>&copy; 2024 EduLogix. Transforming education through technology.</p>
         </div>
       </footer>
     </div>
