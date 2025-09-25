@@ -56,7 +56,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_relativeSplatPath: true }}>
           <AuthContext.Provider value={{ user, login, logout }}>
             <Routes>
               <Route 
