@@ -9,7 +9,6 @@ import { GraduationCap, Users, Building, Eye, EyeOff, ArrowRight } from "lucide-
 import { useAuth } from "../App";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import logoImage from "../assets/logo.ico";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("user");
@@ -105,7 +104,7 @@ const Login = () => {
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 glass-effect">
-            <img src={logoImage} alt="EduLogix Logo" className="w-10 h-10" />
+            <GraduationCap className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">EduLogix</h1>
           <p className="text-white/80">Your gateway to educational excellence</p>
