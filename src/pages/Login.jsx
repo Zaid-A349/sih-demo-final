@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Users, Building, Eye, EyeOff, ArrowRight } from "lucide-react";
-import logoImage from "@/assets/elx-logo.png";
+import logoImage from "@/assets/elx-creative-logo.png";
 import { useAuth } from "../App";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
