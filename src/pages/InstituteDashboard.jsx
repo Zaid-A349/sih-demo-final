@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DashboardLayout } from '../components/DashboardLayout';
 import { InstituteSidebar } from '../components/InstituteSidebar';
+import UserManagement from '../components/UserManagement';
+import DepartmentManagement from '../components/DepartmentManagement';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +22,7 @@ import {
 } from "lucide-react";
 
 const InstituteDashboard = () => {
+  const [activeView, setActiveView] = useState('dashboard');
   // Sample data
   const stats = {
     totalStudents: 2456,
@@ -101,13 +104,19 @@ const InstituteDashboard = () => {
     return colors[status] || colors["Not Started"];
   };
 
-  return (
-    <DashboardLayout 
-      sidebar={<InstituteSidebar />}
-      title="Institute Dashboard"
-      userType="institute"
-    >
-      <div className="p-6 space-y-6">
+  const renderContent = () => {
+    switch (activeView) {
+      case 'users':
+        return <UserManagement />;
+      case 'departments':
+        return <DepartmentManagement />;
+      default:
+        return renderDashboard();
+    }
+  };
+
+  const renderDashboard = () => (
+    <div className="space-y-6">
         {/* Welcome Section */}
         <div className="educational-gradient rounded-2xl p-6 text-white relative overflow-hidden">
           <div className="relative z-10">
@@ -290,15 +299,21 @@ const InstituteDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button variant="outline" className="w-full justify-start" size="sm">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start" 
+                  size="sm"
+                  onClick={() => setActiveView('users')}
+                >
                   <UserPlus className="w-4 h-4 mr-2" />
-                  Add New Student
+                  Manage Users
                 </Button>
-                <Button variant="outline" className="w-full justify-start" size="sm">
-                  <Users className="w-4 h-4 mr-2" />
-                  Add Faculty Member
-                </Button>
-                <Button variant="outline" className="w-full justify-start" size="sm">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start" 
+                  size="sm"
+                  onClick={() => setActiveView('departments')}
+                >
                   <Building className="w-4 h-4 mr-2" />
                   Manage Departments
                 </Button>
@@ -398,6 +413,39 @@ const InstituteDashboard = () => {
             </Card>
           </div>
         </div>
+    </div>
+  );
+
+  return (
+    <DashboardLayout 
+      sidebar={<InstituteSidebar />}
+      title="Institute Dashboard"
+      userType="institute"
+    >
+      <div className="p-6">
+        {/* Navigation Tabs */}
+        <div className="flex space-x-4 mb-6">
+          <Button 
+            variant={activeView === 'dashboard' ? 'default' : 'outline'}
+            onClick={() => setActiveView('dashboard')}
+          >
+            Dashboard
+          </Button>
+          <Button 
+            variant={activeView === 'users' ? 'default' : 'outline'}
+            onClick={() => setActiveView('users')}
+          >
+            User Management
+          </Button>
+          <Button 
+            variant={activeView === 'departments' ? 'default' : 'outline'}
+            onClick={() => setActiveView('departments')}
+          >
+            Department Management
+          </Button>
+        </div>
+
+        {renderContent()}
       </div>
     </DashboardLayout>
   );
